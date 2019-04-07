@@ -7,3 +7,12 @@ Template: Avada
 Version: 1.0.0
 Text Domain:  Avada
 */
+
+.overlay, .overlay h1, .overlay h2 {color:#ffffff !important}
+
+.overlay a {color:#00ff7f;}
+.margin-top-15 {margin-top:15px;}
+
+#main a {text-decoration:underline;}
+
+#main a:hover {color:#009fd3;}
