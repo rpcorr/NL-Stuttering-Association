@@ -71,7 +71,15 @@ if ( ! defined( 'ABSPATH' ) ) {
 <?php endif; ?>
 <a class="fusion-one-page-text-link fusion-page-load-link"></a>
 
-<?php wp_footer(); ?>
+<?php if( strpos(get_bloginfo('url'), 'localhost') === false ) { ?>
+
+<script>
+document.addEventListener('wpcf7mailsent', function(event) {
+    location = 'http://nlstuttering.ca/conference-registration-thanks/';
+}, false);
+</script>
+
+<?php } wp_footer(); ?>
 </body>
 
 </html>
