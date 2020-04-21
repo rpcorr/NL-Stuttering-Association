@@ -13,22 +13,43 @@ if ( ! defined( 'ABSPATH' ) ) {
 ?>
 <!DOCTYPE html>
 <html class="<?php avada_the_html_class(); ?>" <?php language_attributes(); ?>>
-<head>
-	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-	<?php Avada()->head->the_viewport(); ?>
 
-	<?php wp_head(); ?>
-
-	<?php $object_id = get_queried_object_id(); ?>
-	<?php $c_page_id = Avada()->fusion_library->get_page_id(); ?>
-
-	<script type="text/javascript">
-		var doc = document.documentElement;
-		doc.setAttribute('data-useragent', navigator.userAgent);
+    <head>
+        <?php if( strpos(get_bloginfo('url'), 'localhost') === false ) { ?>
+        <!-- Google Tag Manager -->
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+           	new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+		j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+		'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+		})(window,document,'script','dataLayer','GTM-5QRNPFR');
 	</script>
+	<!-- End Google Tag Manager -->
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-116671862-2"></script>
+	<script>
+  		window.dataLayer = window.dataLayer || [];
+  		function gtag(){dataLayer.push(arguments);}
+  		gtag('js', new Date());
 
-	<?php
+  		gtag('config', 'UA-116671862-2');
+	</script>
+        <?php } ?>
+
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <?php Avada()->head->the_viewport(); ?>
+
+        <?php wp_head(); ?>
+
+        <?php $object_id = get_queried_object_id(); ?>
+        <?php $c_page_id = Avada()->fusion_library->get_page_id(); ?>
+
+        <script type="text/javascript">
+        var doc = document.documentElement;
+        doc.setAttribute('data-useragent', navigator.userAgent);
+        </script>
+
+        <?php
 	/**
 	 *
 	 * The settings below are not sanitized.
@@ -39,9 +60,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 	echo apply_filters( 'avada_google_analytics', Avada()->settings->get( 'google_analytics' ) ); // WPCS: XSS ok.
 	echo apply_filters( 'avada_space_head', Avada()->settings->get( 'space_head' ) ); // WPCS: XSS ok.
 	?>
-</head>
+    </head>
 
-<?php
+    <?php
 $wrapper_class = ( is_page_template( 'blank.php' ) ) ? 'wrapper_blank' : '';
 
 if ( 'modern' === Avada()->settings->get( 'mobile_menu_design' ) ) {
@@ -52,9 +73,10 @@ if ( 'modern' === Avada()->settings->get( 'mobile_menu_design' ) ) {
 }
 
 ?>
-<body <?php body_class(); ?>>
-	<a class="skip-link screen-reader-text" href="#content"><?php esc_html_e( 'Skip to content', 'Avada' ); ?></a>
-	<?php
+
+    <body <?php body_class(); ?>>
+        <a class="skip-link screen-reader-text" href="#content"><?php esc_html_e( 'Skip to content', 'Avada' ); ?></a>
+        <?php
 	do_action( 'avada_before_body_content' );
 
 	$boxed_side_header_right = false;
@@ -65,31 +87,31 @@ if ( 'modern' === Avada()->settings->get( 'mobile_menu_design' ) ) {
 	}
 
 	?>
-	<?php if ( ( ( 'Boxed' === Avada()->settings->get( 'layout' ) && ( 'default' === $page_bg_layout || '' == $page_bg_layout ) ) || 'boxed' === $page_bg_layout ) && 'Top' != Avada()->settings->get( 'header_position' ) ) : ?>
-		<div id="boxed-wrapper">
-	<?php endif; ?>
-	<?php if ( ( ( 'Boxed' === Avada()->settings->get( 'layout' ) && 'default' === $page_bg_layout ) || 'boxed' === $page_bg_layout ) && 'framed' === Avada()->settings->get( 'scroll_offset' ) ) : ?>
-		<div class="fusion-sides-frame"></div>
-	<?php endif; ?>
-	<div id="wrapper" class="<?php echo esc_attr( $wrapper_class ); ?>">
-		<div id="home" style="position:relative;top:-1px;"></div>
-		<?php avada_header_template( 'Below', ( is_archive() || Avada_Helper::bbp_is_topic_tag() ) && ! ( class_exists( 'WooCommerce' ) && is_shop() ) ); ?>
-		<?php if ( 'Left' === Avada()->settings->get( 'header_position' ) || 'Right' === Avada()->settings->get( 'header_position' ) ) : ?>
-			<?php avada_side_header(); ?>
-		<?php endif; ?>
+        <?php if ( ( ( 'Boxed' === Avada()->settings->get( 'layout' ) && ( 'default' === $page_bg_layout || '' == $page_bg_layout ) ) || 'boxed' === $page_bg_layout ) && 'Top' != Avada()->settings->get( 'header_position' ) ) : ?>
+        <div id="boxed-wrapper">
+            <?php endif; ?>
+            <?php if ( ( ( 'Boxed' === Avada()->settings->get( 'layout' ) && 'default' === $page_bg_layout ) || 'boxed' === $page_bg_layout ) && 'framed' === Avada()->settings->get( 'scroll_offset' ) ) : ?>
+            <div class="fusion-sides-frame"></div>
+            <?php endif; ?>
+            <div id="wrapper" class="<?php echo esc_attr( $wrapper_class ); ?>">
+                <div id="home" style="position:relative;top:-1px;"></div>
+                <?php avada_header_template( 'Below', ( is_archive() || Avada_Helper::bbp_is_topic_tag() ) && ! ( class_exists( 'WooCommerce' ) && is_shop() ) ); ?>
+                <?php if ( 'Left' === Avada()->settings->get( 'header_position' ) || 'Right' === Avada()->settings->get( 'header_position' ) ) : ?>
+                <?php avada_side_header(); ?>
+                <?php endif; ?>
 
-		<?php avada_sliders_container(); ?>
+                <?php avada_sliders_container(); ?>
 
-		<?php avada_header_template( 'Above', ( is_archive() || Avada_Helper::bbp_is_topic_tag() ) && ! ( class_exists( 'WooCommerce' ) && is_shop() ) ); ?>
+                <?php avada_header_template( 'Above', ( is_archive() || Avada_Helper::bbp_is_topic_tag() ) && ! ( class_exists( 'WooCommerce' ) && is_shop() ) ); ?>
 
-		<?php if ( has_action( 'avada_override_current_page_title_bar' ) ) : ?>
-			<?php do_action( 'avada_override_current_page_title_bar', $c_page_id ); ?>
-		<?php else : ?>
-			<?php avada_current_page_title_bar( $c_page_id ); ?>
-		<?php endif; ?>
-		<?php do_action( 'avada_after_page_title_bar' ); ?>
+                <?php if ( has_action( 'avada_override_current_page_title_bar' ) ) : ?>
+                <?php do_action( 'avada_override_current_page_title_bar', $c_page_id ); ?>
+                <?php else : ?>
+                <?php avada_current_page_title_bar( $c_page_id ); ?>
+                <?php endif; ?>
+                <?php do_action( 'avada_after_page_title_bar' ); ?>
 
-		<?php
+                <?php
 		$main_css   = '';
 		$row_css    = '';
 		$main_class = '';
@@ -108,5 +130,6 @@ if ( 'modern' === Avada()->settings->get( 'mobile_menu_design' ) ) {
 		}
 		do_action( 'avada_before_main_container' );
 		?>
-		<main id="main" role="main" class="clearfix <?php echo esc_attr( $main_class ); ?>" style="<?php echo esc_attr( $main_css ); ?>">
-			<div class="fusion-row" style="<?php echo esc_attr( $row_css ); ?>">
+                <main id="main" role="main" class="clearfix <?php echo esc_attr( $main_class ); ?>"
+                    style="<?php echo esc_attr( $main_css ); ?>">
+                    <div class="fusion-row" style="<?php echo esc_attr( $row_css ); ?>">
