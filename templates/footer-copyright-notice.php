@@ -21,6 +21,6 @@
 	 */
 	?>
     <div>
-        <?php echo html_entity_decode( do_shortcode( Avada()->settings->get( 'footer_text' ) ) ); // WPCS: XSS ok. ?>
+        <?php echo 'Copyright ' . date('Y') . ' ' . html_entity_decode( do_shortcode( Avada()->settings->get( 'footer_text' ) ) ); // WPCS: XSS ok. ?>
     </div>
 </div>
