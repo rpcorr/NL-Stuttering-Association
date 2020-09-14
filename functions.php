@@ -11,3 +11,21 @@ function avada_lang_setup() {
 }
 add_action( 'after_setup_theme', 'avada_lang_setup' );
 
+if( strpos(get_bloginfo('url'), 'localhost') === false ) { 
+	function cf7_thank_you_redirect() {
+		?>
+<script>
+document.addEventListener('wpcf7mailsent', function(event) {
+    if ('241' == event.detail.contactFormId) {
+        location = 'http://nlstuttering.ca/conference-registration-thanks/';
+    } else if ('338' == event.detail.contactFormId) {
+        location = 'http://nlstuttering.ca/keep-in-touch-thanks/';
+    }
+
+}, false);
+</script>
+
+<?php
+		}
+		add_action( 'wp_footer', 'cf7_thank_you_redirect');
+}
