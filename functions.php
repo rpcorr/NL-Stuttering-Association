@@ -29,3 +29,10 @@ document.addEventListener('wpcf7mailsent', function(event) {
 		}
 		add_action( 'wp_footer', 'cf7_thank_you_redirect');
 }
+
+
+
+function modal_scripts() {
+    wp_enqueue_script( 'modal-custom-js', get_stylesheet_directory_uri() . '/js/custom-modal.min.js', array(), false, true );
+ }
+ add_action( 'wp_enqueue_scripts', 'modal_scripts' );
