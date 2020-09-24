@@ -1,5 +1,6 @@
 /*
-Theme Name: Avada Child | Shared by VestaThemes.com
+Theme Name: Avada Child
+ | Shared by VestaThemes.com
 Description: Child theme for Avada theme
 Author: ThemeFusion
 Author URI: https://theme-fusion.com
@@ -16,3 +17,22 @@ Text Domain:  Avada
 #main a {text-decoration:underline;}
 
 #main a:hover {color:#009fd3;}
+
+
+.btn {
+    display: inline-block;
+    border: none;
+    background-color: #213d4d;
+    color: #fff;
+    padding: 0.75rem 1.5rem;
+    margin-top: 1rem;
+    text-decoration: none;
+}
+
+.btn:hover {
+    background-color: #00b7cd;   
+}
+
+h3#modal-heading-1 {
+    color: #213d4d;
+}
