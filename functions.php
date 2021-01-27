@@ -36,3 +36,13 @@ function modal_scripts() {
     wp_enqueue_script( 'modal-custom-js', get_stylesheet_directory_uri() . '/js/custom-modal.min.js', array(), false, true );
  }
  add_action( 'wp_enqueue_scripts', 'modal_scripts' );
+
+ // set editor role for contact-form-cfdb-7 plugin
+ include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+ if ( is_plugin_active( 'contact-form-cfdb7/contact-form-cfdb-7.php' ) ) {
+     // Add custom capability
+     $role = get_role( 'editor' );
+     if(!$role->has_cap('cfdb7_access')){
+         $role->add_cap( 'cfdb7_access' );
+     }
+ }
