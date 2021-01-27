@@ -11,6 +11,8 @@ function avada_lang_setup() {
 }
 add_action( 'after_setup_theme', 'avada_lang_setup' );
 
+
+// redirect user to the correct thank you page
 if( strpos(get_bloginfo('url'), 'localhost') === false ) { 
 	function cf7_thank_you_redirect() {
 		?>
@@ -26,16 +28,17 @@ document.addEventListener('wpcf7mailsent', function(event) {
 </script>
 
 <?php
-		}
-		add_action( 'wp_footer', 'cf7_thank_you_redirect');
+    }
+	add_action( 'wp_footer', 'cf7_thank_you_redirect');
 }
 
 
-
+// enable the modal JS script
 function modal_scripts() {
     wp_enqueue_script( 'modal-custom-js', get_stylesheet_directory_uri() . '/js/custom-modal.min.js', array(), false, true );
- }
- add_action( 'wp_enqueue_scripts', 'modal_scripts' );
+}
+add_action( 'wp_enqueue_scripts', 'modal_scripts' );
+ 
 
  // set editor role for contact-form-cfdb-7 plugin
  include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
