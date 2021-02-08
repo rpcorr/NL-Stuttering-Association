@@ -12,6 +12,13 @@ function avada_lang_setup() {
 add_action( 'after_setup_theme', 'avada_lang_setup' );
 
 
+// custom the login error message
+function customize_login_errors(){
+    return 'The login credentials are incorrect.';
+}
+add_filter( 'login_errors', 'customize_login_errors' );
+
+
 // redirect user to the correct thank you page
 if( strpos(get_bloginfo('url'), 'localhost') === false ) { 
 	function cf7_thank_you_redirect() {
