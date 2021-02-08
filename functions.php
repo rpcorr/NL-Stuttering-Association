@@ -20,12 +20,12 @@ function my_custom_login_failure()
 
     // Invalid username.
     if (in_array('invalid_username', $error_codes)) {
-        $error = 'The login credentials are incorrect.';
+        $error = '<strong>ERROR</strong>: Invalid username and/or password.  <a href="?action=lostpassword">Lost your password?</a>';
     }
 
     // Incorrect password.
     if (in_array('incorrect_password', $error_codes)) {
-        $error = 'The login credentials are incorrect.';
+        $error = '<strong>ERROR</strong>: Invalid username and/or password.  <a href="?action=lostpassword">Lost your password?</a>';
     }
 
     //remove_action('login_footer', 'wp_shake_js', 12); // removing the shaking effect of the form, snippet could work without this line too!!!  
