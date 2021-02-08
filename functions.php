@@ -12,11 +12,32 @@ function avada_lang_setup() {
 add_action( 'after_setup_theme', 'avada_lang_setup' );
 
 
-// custom the login error message
-function customize_login_errors(){
-    return 'The login credentials are incorrect.';
+function my_custom_login_failure()
+{
+    global $errors;
+
+    $error_codes = $errors->get_error_codes();
+
+    // Invalid username.
+    if (in_array('invalid_username', $error_codes)) {
+        $error = 'The login credentials are incorrect.';
+    }
+
+    // Incorrect password.
+    if (in_array('incorrect_password', $error_codes)) {
+        $error = 'The login credentials are incorrect.';
+    }
+
+    //remove_action('login_footer', 'wp_shake_js', 12); // removing the shaking effect of the form, snippet could work without this line too!!!  
+
+    wp_enqueue_script('jquery');
+
+    wp_enqueue_script('my_custom_login_script', get_stylesheet_directory_uri() . '/js/custom-error-login.js', 'JQuery', "1.0", TRUE);
+
+    return $error;
 }
-add_filter( 'login_errors', 'customize_login_errors' );
+
+add_filter('login_errors', 'my_custom_login_failure');
 
 
 // redirect user to the correct thank you page
