@@ -77,3 +77,10 @@ add_action( 'wp_enqueue_scripts', 'modal_scripts' );
          $role->add_cap( 'cfdb7_access' );
      }
  }
+
+ 
+ // Line Break Shortcode
+function line_break_shortcode() {
+	return '<br />';
+}
+add_shortcode( 'br', 'line_break_shortcode' );
