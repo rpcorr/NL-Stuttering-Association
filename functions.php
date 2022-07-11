@@ -46,7 +46,7 @@ if( strpos(get_bloginfo('url'), 'localhost') === false ) {
 		?>
 <script>
 document.addEventListener('wpcf7mailsent', function(event) {
-    if ('241' == event.detail.contactFormId) {
+    if ('241' == event.detail.contactFormId || '450' == event.detail.contactFormId) {
         location = 'http://nlstuttering.ca/conference-registration-thanks/';
     } else if ('338' == event.detail.contactFormId) {
         location = 'http://nlstuttering.ca/keep-in-touch-thanks/';
