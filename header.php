@@ -102,8 +102,6 @@ if ( 'modern' === Avada()->settings->get( 'mobile_menu_design' ) ) {
 
                 <?php avada_sliders_container(); ?>
 
-                <?php avada_header_template( 'Above', ( is_archive() || Avada_Helper::bbp_is_topic_tag() ) && ! ( class_exists( 'WooCommerce' ) && is_shop() ) ); ?>
-
                 <?php if ( has_action( 'avada_override_current_page_title_bar' ) ) : ?>
                 <?php do_action( 'avada_override_current_page_title_bar', $c_page_id ); ?>
                 <?php else : ?>
