@@ -61,9 +61,18 @@ document.addEventListener('wpcf7mailsent', function(event) {
 }
 
 
-// enable the modal JS script
+// enable the modal JS script to trigger once a day
 function modal_scripts() {
-    wp_enqueue_script( 'modal-custom-js', get_stylesheet_directory_uri() . '/js/custom-modal.min.js', array(), false, true );
+    
+    $cookie_name = "popupModal";
+    $cookie_value = "once";
+    
+    if(!isset($_COOKIE[$cookie_name])) {
+
+        setcookie($cookie_name, $cookie_value, time() + (86400 * 1), "/"); // 86400 = 1 day
+
+        wp_enqueue_script( 'modal-custom-js', get_stylesheet_directory_uri() . '/js/custom-modal.min.js', array(), false, true );
+    }
 }
 add_action( 'wp_enqueue_scripts', 'modal_scripts' );
  
